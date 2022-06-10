@@ -4,8 +4,6 @@
 #include "MyString.h"
 #include "MyVector.hpp"
 
-
-
 class Jedi
 {
 	MyString name;

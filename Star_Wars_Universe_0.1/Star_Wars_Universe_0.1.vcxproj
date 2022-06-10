@@ -141,12 +141,14 @@
   <ItemGroup>
     <ClCompile Include="Jedi.cpp" />
     <ClCompile Include="MyString.cpp" />
+    <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Star_Wars_Universe_0.1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Jedi.h" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="MyVector.hpp" />
+    <ClInclude Include="Planet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

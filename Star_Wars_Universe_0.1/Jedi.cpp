@@ -138,6 +138,8 @@ void Jedi::demoteJedi(double multiplier)
 std::ostream& operator<<(std::ostream& ofs, const Jedi& jedi)
 {
 	ofs << jedi.getName() << " " << jedi.getJediRank() << " " << jedi.getAge() << " " << jedi.getLightsaberColour() << " " << jedi.getStrength() << "\n";
+	return ofs;
+
 }
 
 std::istream& operator>>(std::istream& ifs, Jedi& jedi)
@@ -161,4 +163,6 @@ std::istream& operator>>(std::istream& ifs, Jedi& jedi)
 	double strengthBuff;
 	ifs >> strengthBuff;
 	jedi.setStrength(strengthBuff);
+
+	return ifs;
 }
