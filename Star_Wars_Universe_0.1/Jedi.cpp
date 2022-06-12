@@ -96,6 +96,10 @@ const MyString& Jedi::getJediRank() const
 		break;
 	}
 }
+int Jedi::getJediRankAsNumber() const
+{
+	return (int)jediRank;
+}
 unsigned Jedi::getAge() const
 {
 	return age;
@@ -116,6 +120,7 @@ void Jedi::promoteJedi(double multiplier)
 	strength *= (1 + multiplier);
 	int ind = (int)jediRank;
 	jediRank = (JediRank) ++ind;
+	std::cout << "Jedi " << getName() << " was promoted!\n";
 }
 
 void Jedi::demoteJedi(double multiplier)
@@ -133,6 +138,7 @@ void Jedi::demoteJedi(double multiplier)
 	strength *= (1 - multiplier);
 	int ind = (int)jediRank;
 	jediRank = (JediRank) --ind;
+	std::cout << "Jedi " << getName() << " was demoted!\n";
 }
 
 std::ostream& operator<<(std::ostream& ofs, const Jedi& jedi)

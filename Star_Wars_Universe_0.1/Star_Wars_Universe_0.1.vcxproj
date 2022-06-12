@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GlobalFunctions.cpp" />
     <ClCompile Include="Jedi.cpp" />
     <ClCompile Include="MyString.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Star_Wars_Universe_0.1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GlobalFunctions.h" />
     <ClInclude Include="Jedi.h" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="MyVector.hpp" />

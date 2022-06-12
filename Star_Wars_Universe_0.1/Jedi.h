@@ -40,6 +40,7 @@ public:
 	const MyString& getLightsaberColour() const;
 	double getStrength() const;
 	const MyString& getJediRank() const;
+	int getJediRankAsNumber() const;
 	unsigned getAge() const;
 
 	void promoteJedi(double multiplier);

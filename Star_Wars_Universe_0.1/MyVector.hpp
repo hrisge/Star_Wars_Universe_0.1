@@ -27,8 +27,9 @@ public:
 	void addItem(const T&);
 	void removeItem(unsigned);
 
-	const T& getItemAtIndex(unsigned);
-	const T& operator[](unsigned);
+	const T& getItemAtIndex(unsigned) const;
+	const T& operator[](unsigned) const;
+	T& operator[](unsigned);
 };
 
 template <typename T>
@@ -154,13 +155,19 @@ void MyVector<T>::removeItem(unsigned index)
 }
 
 template <typename T>
-const T& MyVector<T>::getItemAtIndex(unsigned index)
+const T& MyVector<T>::getItemAtIndex(unsigned index) const
 {
 	return vector[index];
 }
 
 template <typename T>
-const T& MyVector<T>::operator[](unsigned index)
+const T& MyVector<T>::operator[](unsigned index) const
 {
 	return getItemAtIndex(index);
+}
+
+template <typename T>
+T& MyVector<T>::operator[](unsigned index)
+{
+	return vector[index];
 }
