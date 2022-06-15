@@ -259,14 +259,22 @@ void Planet::print()
 	sort();
 	for (unsigned i = 0; i < getJedi().getSize(); ++i)
 	{
-		//std::cout << i << ") Jedi name : " << getJedi()[i].getName() << "\n   Jedi rank: " << getJedi()[i].getJediRank() << "\n   Jedi age:" <<
-		//	getJedi()[i].getAge() << "\n   Jedi's lightsaber colour: " << getJedi()[i].getLightsaberColour() << "\n   Jedi's strength: " <<
-		//	getJedi()[i].getStrength() << std::endl;
-
 		std::cout << i+1 << ") Jedi name : " << getJedi()[i].getName();
 		std::cout << "\n   Jedi rank: " << getJedi()[i].getJediRank();
 		std::cout << "\n   Jedi age:" << getJedi()[i].getAge();
 		std::cout << "\n   Jedi's lightsaber colour: " << getJedi()[i].getLightsaberColour();
 		std::cout << "\n   Jedi's strength: " << getJedi()[i].getStrength() << std::endl<<std::endl;
 	}
+}
+
+void Planet::print(const MyString& jediName)
+{
+	int index = getIndexOfAJediByName(jediName);
+	if (index < 0)
+	{
+		std::cout << "There is no Jedi with that name!\n";
+		return;
+	}
+
+	std::cout << getJedi()[index];
 }

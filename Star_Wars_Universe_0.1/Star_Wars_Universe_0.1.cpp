@@ -20,6 +20,7 @@ int main()
 
     std::cout << a.getJedi()[1];
 
+    a.print("Luke Skywalker");
     a.print();
     std::cout << "Hello World!\n";
 }

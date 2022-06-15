@@ -32,5 +32,6 @@ public:
 	const Jedi* getYoungestJedi(const MyString& jediRank) const;
 	const MyString getMostUsedSaberColour(const MyString& jediRank) const;
 	void print();
+	void print(const MyString& jediName);
 };
 
