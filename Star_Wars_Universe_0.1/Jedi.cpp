@@ -17,12 +17,27 @@ Jedi::Jedi(const MyString& name, const MyString& rank, unsigned age, const MyStr
 	}
 }
 
+Jedi::Jedi()
+{
+
+}
+
 void Jedi::setName(const MyString& name)
 {
+	if (!doesStringContainsOnlyLettersAndSpaces(name))
+	{
+		std::cout << "This name has invalid symbols for name. Use only letters and spaces!\n";
+		return;
+	}
 	this->name = name;
 }
 void Jedi::setLightsaberColour(const MyString& saberColour)
 {
+	if (!doesStringContainsOnlyLettersAndSpaces(saberColour))
+	{
+		std::cout << "Inputed saber colour has invalid symbols.  Use only letters and spaces!\n";
+		return;
+	}
 	lightsaberColour = saberColour;
 }
 void Jedi::setStrength(double strength)
@@ -72,29 +87,32 @@ double Jedi::getStrength() const
 {
 	return strength;
 }
-const MyString& Jedi::getJediRank() const
+const MyString Jedi::getJediRank() const
 {
+	MyString toReturn;
 	switch (jediRank)
 	{
-	case JediRank::YOUNGLING: return "YOUNGLING";
+	case JediRank::YOUNGLING: toReturn="YOUNGLING";
 		break;
-	case JediRank::INITIATE: return "INITIATE";
+	case JediRank::INITIATE: toReturn = "INITIATE";
 		break;
-	case JediRank::PADAWAN: return "PADAWAN";
+	case JediRank::PADAWAN: toReturn = "PADAWAN";
 		break;
-	case JediRank::KNIGHT_ASPIRANT : return "KNIGHT_ASPIRANT";
+	case JediRank::KNIGHT_ASPIRANT : toReturn = "KNIGHT_ASPIRANT";
 		break;
-	case JediRank::KNIGHT: return "KNIGHT";
+	case JediRank::KNIGHT: toReturn = "KNIGHT";
 		break;
-	case JediRank::MASTER: return "MASTER";
+	case JediRank::MASTER: toReturn = "MASTER";
 		break;
-	case JediRank::BATTLE_MASTER: return "BATTLE_MASTER";
+	case JediRank::BATTLE_MASTER: toReturn = "BATTLE_MASTER";
 		break;
-	case JediRank::GRAND_MASTER: return "GRAND_MASTER";
+	case JediRank::GRAND_MASTER: toReturn = "GRAND_MASTER";
 		break;
-	default: return "UNDEFINED";
+	default: toReturn = "UNDEFINED";
 		break;
 	}
+	return toReturn;
+
 }
 int Jedi::getJediRankAsNumber() const
 {
@@ -125,7 +143,7 @@ void Jedi::promoteJedi(double multiplier)
 
 void Jedi::demoteJedi(double multiplier)
 {
-	if (getJediRank() == "GRAND_MASTER")
+	if (getJediRank() == "YOUNGLING")
 	{
 		std::cout << "This Jedi has been already demoted to the lowest rank - YOUNGLING! \n";
 		return;
@@ -135,6 +153,7 @@ void Jedi::demoteJedi(double multiplier)
 		std::cout << "Invalid multiplier. Multiplier must be a positive double number! \n";
 		return;
 	}
+
 	strength *= (1 - multiplier);
 	int ind = (int)jediRank;
 	jediRank = (JediRank) --ind;

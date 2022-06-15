@@ -15,9 +15,9 @@ void MyString::copyFrom(const MyString& other)
 }
 void MyString::copyFrom(const char* myString)
 {
-	capacity = strlen(myString) + 1;
+	capacity = (strlen(myString) + 1);
 	str = new char[capacity];
-	copyString(myString, capacity);
+	copyString(myString, capacity - 1);
 }
 
 void MyString::resize()
@@ -142,11 +142,11 @@ void MyString::copyString(const MyString& other, unsigned numberOfChars)
 }
 void MyString::copyString(const char* str, unsigned numberOfChars)
 {
-	while ((numberOfChars >= getCapacity() - 1) || (getCapacity() == 0))
+	while ((numberOfChars >= getCapacity()) || (getCapacity() == 0))
 		resize();
 
-	unsigned cnt = numberOfChars - 1;
-	for (unsigned i = 0; i < numberOfChars - 1; i++)
+	unsigned cnt = numberOfChars;
+	for (unsigned i = 0; i < numberOfChars; i++)
 		this->str[i] = str[i];
 	this->str[cnt] = '\0';
 }

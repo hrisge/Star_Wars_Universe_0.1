@@ -3,6 +3,7 @@
 #include <fstream>
 #include "MyString.h"
 #include "MyVector.hpp"
+#include "GlobalFunctions.h"
 
 class Jedi
 {
@@ -28,6 +29,7 @@ class Jedi
 
 public:
 	
+	Jedi();
 	Jedi(const MyString& name, const MyString& rank, unsigned age, const MyString& saberColour, double strength);
 
 	void setName(const MyString& name);
@@ -39,7 +41,7 @@ public:
 	const MyString& getName() const;
 	const MyString& getLightsaberColour() const;
 	double getStrength() const;
-	const MyString& getJediRank() const;
+	const MyString getJediRank() const;
 	int getJediRankAsNumber() const;
 	unsigned getAge() const;
 

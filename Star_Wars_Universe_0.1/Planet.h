@@ -11,6 +11,7 @@ class Planet
 	MyVector<Jedi> jedi;
 
 	int getIndexOfAJediByName(const MyString& name) const;
+	void sort();
 
 public:
 	
@@ -27,11 +28,9 @@ public:
 	void removeJedi(const MyString& name);
 	void promoteJedi(const MyString& name, double multiplier);
 	void demoteJedi(const MyString& name, double multiplier);
-	const Jedi& getStrongestJedi() const;
-	const Jedi& getYoungestJedi(const MyString& jediRank) const;
-	const MyString& getMostUsedSaberColour() const;
+	const Jedi* getStrongestJedi() const;
+	const Jedi* getYoungestJedi(const MyString& jediRank) const;
+	const MyString getMostUsedSaberColour(const MyString& jediRank) const;
 	void print();
-
-
 };
 

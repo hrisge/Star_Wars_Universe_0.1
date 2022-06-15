@@ -35,9 +35,9 @@ public:
 template <typename T>
 MyVector<T>::MyVector()
 {
-	vector = nullptr;
+	capacity = 4;
+	vector = new T[capacity];
 	size = 0;
-	capacity = 0;
 }
 
 template <typename T>
@@ -148,10 +148,8 @@ void MyVector<T>::addItem(const T& item)
 template <typename T>
 void MyVector<T>::removeItem(unsigned index)
 {
-	delete vector[index];
-	for (size_t i = index; i < size; ++i)
-		vector[i] = vector[i + 1];
 	size--;
+	vector[index] = vector[getSize()];
 }
 
 template <typename T>

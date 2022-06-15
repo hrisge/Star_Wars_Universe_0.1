@@ -24,6 +24,10 @@ bool doesStringContainsOnlyLettersAndSpaces(const MyString& string)
 	unsigned size = string.getStringLen();
 	for (unsigned i = 0; i < size; ++i)
 	{
-		if((string[i]>='A' && string[i]<='Z')||(string[i]>='a' && string[i]))
+		if ((string[i] >= 'A' && string[i] <= 'Z') || (string[i] >= 'a' && string[i] <= 'z') || (string[i] == ' ') || (string[i] == '-'))
+			continue;
+		else
+			return false;
 	}
+	return true;
 }
