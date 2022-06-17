@@ -31,3 +31,18 @@ bool doesStringContainsOnlyLettersAndSpaces(const MyString& string)
 	}
 	return true;
 }
+
+unsigned convertArrToUnsigned(const char* number)
+{
+	unsigned res = 0;
+	bool endOfStr = true;
+	unsigned cnt = 0;
+
+	while (endOfStr)
+	{
+		res = res * 10 + (number[cnt] - '0');
+		endOfStr = !(number[cnt + 1] == '\0');
+		cnt++;
+	}
+	return res;
+}

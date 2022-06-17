@@ -35,6 +35,47 @@ void Planet::sort()
 	}
 }
 
+void Planet::load()
+{
+	MyString fileName = getName();
+	fileName.concat(".db"); 
+
+	std::ifstream fileIn(fileName.getString());
+	if (!fileIn.is_open())
+	{
+		std::cout << "File could not be open!\n";
+		return;
+	}
+
+	bool fileEnd = fileIn.peek() == '\0';
+	while (!fileEnd)
+	{
+		char buffName[MAX_BUFF3];
+		fileIn.getline(buffName, MAX_BUFF3, '#');
+		
+		char buffRank[MAX_BUFF3];
+		fileIn.getline(buffRank, MAX_BUFF3, '#');
+
+		char buffAge[MAX_BUFF3];
+		fileIn.getline(buffAge, MAX_BUFF3, '#');
+		unsigned age = convertArrToUnsigned(buffAge);
+
+		char buffSaberColour[MAX_BUFF3];
+		fileIn.getline(buffSaberColour, MAX_BUFF3, '#');
+
+		double strength;
+		fileIn >> strength;
+
+		addAJedi(buffName, buffRank, age, buffSaberColour, strength);
+
+		while (fileIn.peek() == '#' || fileIn.peek()=='\n')
+			fileIn.get();
+
+		fileEnd = fileIn.peek() == '\0';
+	}
+	fileIn.close();
+}
+
 Planet::Planet()
 {
 
@@ -43,6 +84,7 @@ Planet::Planet()
 Planet::Planet(const MyString& name)
 {
 	this->name = name;
+	load();
 }
 
 const MyString& Planet::getName() const
@@ -267,7 +309,7 @@ void Planet::print()
 	}
 }
 
-void Planet::print(const MyString& jediName)
+void Planet::print(const MyString& jediName) const
 {
 	int index = getIndexOfAJediByName(jediName);
 	if (index < 0)
@@ -278,3 +320,30 @@ void Planet::print(const MyString& jediName)
 
 	std::cout << getJedi()[index];
 }
+
+void Planet::save() const
+{
+	MyString fileName = getName();
+	fileName.concat(".db");
+
+	std::ofstream fileOut(fileName.getString(), std::ios::out | std::ios::trunc);
+	if (!fileOut.is_open())
+	{
+		std::cout << "File could not be open!\n";
+		return;
+	}
+
+	for (unsigned i = 0; i < getJedi().getSize(); ++i)
+	{
+		fileOut << getJedi()[i].getName() << '#';
+		fileOut << getJedi()[i].getJediRank() << '#';
+		fileOut << getJedi()[i].getAge() << '#';
+		fileOut << getJedi()[i].getLightsaberColour() << '#';
+		fileOut << getJedi()[i].getStrength() << '\n';
+	}
+	fileOut << '\0';
+
+	fileOut.close();
+}
+
+

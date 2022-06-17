@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-const unsigned MAX_BUFF3 = 10000;
+const unsigned MAX_BUFF3 = 1024;
 const unsigned INITIAL_CAPACITY = 4;
 
 class MyString

@@ -145,6 +145,7 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="PlanetCollection.cpp" />
     <ClCompile Include="Star_Wars_Universe_0.1.cpp" />
+    <ClCompile Include="System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GlobalFunctions.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="MyVector.hpp" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="PlanetCollection.h" />
+    <ClInclude Include="System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

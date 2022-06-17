@@ -10,6 +10,38 @@ int PlanetCollection::getIndexForAPlanetByName(const MyString& planetName) const
 	return -1;
 }
 
+void PlanetCollection::load()
+{
+	std::ifstream fileIn(fileName.getString());
+
+
+	if (!fileIn.is_open())
+	{
+		std::cout << "Could not open file!\n";
+		return;
+	}
+
+	bool fileEnd = fileIn.peek() == '\0';
+	while (!fileEnd)
+	{
+		char nameBuff[MAX_BUFF3];
+		fileIn.getline(nameBuff, MAX_BUFF3);
+		fileEnd = fileIn.peek() == '\0';
+
+		Planet buff(nameBuff);
+
+		planetCollection.addItem(buff);
+	}
+	fileIn.close();
+
+	
+}
+
+PlanetCollection::PlanetCollection()
+{
+	load();
+}
+
 const MyVector<Planet> PlanetCollection::getPlanetCollection() const
 {
 	return planetCollection;
@@ -23,7 +55,7 @@ bool PlanetCollection::isTherePlanetWithThisName(const MyString& planetName) con
 
 void PlanetCollection::addPlanet(const MyString& planetName)
 {
-	if (!isTherePlanetWithThisName(planetName))
+	if (isTherePlanetWithThisName(planetName))
 	{
 		std::cout << "There is already planet with this name! \n";
 		return;
@@ -34,6 +66,7 @@ void PlanetCollection::addPlanet(const MyString& planetName)
 
 void PlanetCollection::addJedi(const MyString& planetName, const MyString& name, const MyString& rank, unsigned age, const MyString& saberColour, double strength)
 {
+	system("CLS");
 	int ind = getIndexForAPlanetByName(planetName);
 	if (ind < 0)
 	{
@@ -57,6 +90,7 @@ void PlanetCollection::removeJedi(const MyString& planetName, const MyString& na
 
 void PlanetCollection::promoteJedi(const MyString& planetName, const MyString& name, double multiplier)
 {
+	system("CLS");
 	int index = getIndexForAPlanetByName(planetName);
 	if (index < 0)
 	{
@@ -68,6 +102,7 @@ void PlanetCollection::promoteJedi(const MyString& planetName, const MyString& n
 
 void PlanetCollection::demoteJedi(const MyString& planetName, const MyString& name, double multiplier)
 {
+	system("CLS");
 	int index = getIndexForAPlanetByName(planetName);
 	if (index < 0)
 	{
@@ -83,20 +118,20 @@ const Jedi* PlanetCollection::getStrongestJedi(const MyString& planetName) const
 	if (index < 0)
 	{
 		std::cout << "There is no planet with this name!\n";
-		return;
+		return nullptr;
 	}
 	return planetCollection[index].getStrongestJedi();
 }
 
-const Jedi* PlanetCollection::getYoungestJedi(const MyString& planetName) const
+const Jedi* PlanetCollection::getYoungestJedi(const MyString& planetName, const MyString& rank) const
 {
 	int index = getIndexForAPlanetByName(planetName);
 	if (index < 0)
 	{
 		std::cout << "There is no planet with this name!\n";
-		return;
+		return nullptr;
 	}
-	return planetCollection[index].getYoungestJedi();
+	return planetCollection[index].getYoungestJedi(rank);
 }
 
 const MyString PlanetCollection::getMostUsedSaberColour(const MyString& planetName, const MyString& jediRank) const
@@ -105,7 +140,7 @@ const MyString PlanetCollection::getMostUsedSaberColour(const MyString& planetNa
 	if (index < 0)
 	{
 		std::cout << "There is no planet with this name!\n";
-		return;
+		return nullptr;
 	}
 	return planetCollection[index].getMostUsedSaberColour(jediRank);
 }
@@ -117,4 +152,22 @@ void PlanetCollection::print()
 		planetCollection[i].print();
 		std::cout << std::endl << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 	}
+}
+
+void PlanetCollection::save() const
+{
+	std::ofstream fileOut(fileName.getString(), std::ios::out);
+	if (!fileOut.is_open())
+	{
+		std::cout << "Could not open file!\n";
+		return;
+	}
+
+	for (unsigned i = 0; i < getPlanetCollection().getSize(); ++i)
+	{
+		fileOut << getPlanetCollection()[i].getName() << "\n";
+		planetCollection[i].save();
+	}
+	fileOut << '\0';
+	fileOut.close();
 }
