@@ -141,6 +141,7 @@ void demoteJedi(PlanetCollection& planetCollection)
 	double multiplier;
 	std::cout << "Enter the multiplier of the decreased strength of the Jedi! : ";
 	std::cin >> multiplier;
+	std::cin.ignore();
 	planetCollection.demoteJedi(planetName, name, multiplier);
 }
 void getStrongestJedi(PlanetCollection& planetCollection)

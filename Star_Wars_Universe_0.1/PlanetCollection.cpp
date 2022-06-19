@@ -61,6 +61,7 @@ void PlanetCollection::addPlanet(const MyString& planetName)
 		return;
 	}
 	planetCollection.addItem(planetName);
+	system("CLS");
 	std::cout << "Planet created successfully!\n";
 }
 
@@ -73,7 +74,15 @@ void PlanetCollection::addJedi(const MyString& planetName, const MyString& name,
 		std::cout << "There is no planet with this name! \n";
 		return;
 	}
+
 	planetCollection[ind].addAJedi(name, rank, age, saberColour, strength);
+	if (planetCollection[ind].getJedi()[planetCollection[ind].getJedi().getSize() - 1].getCorrectData() == false)
+	{
+		std::cout << "The inputed data was Invalid. Jedi not added to the planet!\n";
+		planetCollection[ind].removeJedi(name);
+		return;
+	}
+
 	std::cout << "Jedi added successfully!\n";
 }
 

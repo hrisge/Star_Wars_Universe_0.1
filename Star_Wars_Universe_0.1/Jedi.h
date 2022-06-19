@@ -25,7 +25,8 @@ class Jedi
 	};
 	JediRank jediRank;
 	unsigned age;
-	bool correctJediRank = true;
+
+	bool correctData = true;
 
 public:
 	
@@ -44,6 +45,7 @@ public:
 	const MyString getJediRank() const;
 	int getJediRankAsNumber() const;
 	unsigned getAge() const;
+	bool getCorrectData() const;
 
 	void promoteJedi(double multiplier);
 	void demoteJedi(double multiplier);

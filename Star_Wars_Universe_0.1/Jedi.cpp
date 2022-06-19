@@ -7,14 +7,6 @@ Jedi::Jedi(const MyString& name, const MyString& rank, unsigned age, const MyStr
 	setAge(age);
 	setLightsaberColour(saberColour);
 	setStrength(strength);
-	while (correctJediRank == false)
-	{
-		system("CLS");
-		std::cout<<"Jedi Rank is Invalid. Try entering valid rank. Valid ranks are: \nYOUNGLING \nINITIATE \nPADAWAN \nKNIGHT_ASPIRANT \nKNIGHT \nMASTER \nBATTLE_MASTER \nGRAND_MASTER \n";
-		MyString rank;
-		std::cin >> rank;
-		setJediRank(rank);
-	}
 }
 
 Jedi::Jedi()
@@ -24,21 +16,17 @@ Jedi::Jedi()
 
 void Jedi::setName(const MyString& name)
 {
-	if (!doesStringContainsOnlyLettersAndSpaces(name))
-	{
-		std::cout << "This name has invalid symbols for name. Use only letters and spaces!\n";
-		return;
-	}
 	this->name = name;
+	if (!correctData)
+		return;
+	correctData = doesStringContainsOnlyLettersAndSpaces(name);
 }
 void Jedi::setLightsaberColour(const MyString& saberColour)
 {
-	if (!doesStringContainsOnlyLettersAndSpaces(saberColour))
-	{
-		std::cout << "Inputed saber colour has invalid symbols.  Use only letters and spaces!\n";
-		return;
-	}
 	lightsaberColour = saberColour;
+	if (!correctData)
+		return;
+	correctData = doesStringContainsOnlyLettersAndSpaces(saberColour);
 }
 void Jedi::setStrength(double strength)
 {
@@ -65,10 +53,9 @@ void Jedi::setJediRank(const MyString& jediRank)
 	else
 	{
 		this->jediRank = (JediRank)-1;
-		correctJediRank = false;
+		correctData = false;
 		return;
 	}
-	correctJediRank = true;
 }
 void Jedi::setAge(unsigned age)
 {
@@ -158,6 +145,11 @@ void Jedi::demoteJedi(double multiplier)
 	int ind = (int)jediRank;
 	jediRank = (JediRank) --ind;
 	std::cout << "Jedi " << getName() << " was demoted!\n";
+}
+
+bool Jedi::getCorrectData() const
+{
+	return correctData;
 }
 
 std::ostream& operator<<(std::ostream& ofs, const Jedi& jedi)

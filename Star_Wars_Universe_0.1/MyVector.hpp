@@ -149,6 +149,8 @@ template <typename T>
 void MyVector<T>::removeItem(unsigned index)
 {
 	size--;
+	if (index = size)
+		return;
 	vector[index] = vector[getSize()];
 }
 
