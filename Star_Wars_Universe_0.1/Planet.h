@@ -32,7 +32,7 @@ public:
 	const Jedi* getStrongestJedi() const;
 	const Jedi* getYoungestJedi(const MyString& jediRank) const;
 	const MyString getMostUsedSaberColour(const MyString& jediRank) const;
-	void print();
+	void printAPlanet();
 	void print(const MyString& jediName) const;
 	void save() const;
 };

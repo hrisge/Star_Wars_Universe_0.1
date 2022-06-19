@@ -28,6 +28,7 @@ public:
 	void removeItem(unsigned);
 
 	const T& getItemAtIndex(unsigned) const;
+	T& takeItemAtIndex(unsigned);
 	const T& operator[](unsigned) const;
 	T& operator[](unsigned);
 };
@@ -160,6 +161,12 @@ const T& MyVector<T>::getItemAtIndex(unsigned index) const
 	return vector[index];
 }
 
+template<typename T>
+inline T& MyVector<T>::takeItemAtIndex(unsigned index)
+{
+	return vector[index];
+}
+
 template <typename T>
 const T& MyVector<T>::operator[](unsigned index) const
 {
@@ -169,5 +176,5 @@ const T& MyVector<T>::operator[](unsigned index) const
 template <typename T>
 T& MyVector<T>::operator[](unsigned index)
 {
-	return vector[index];
+	return takeItemAtIndex(index);
 }

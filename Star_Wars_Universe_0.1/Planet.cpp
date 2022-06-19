@@ -295,7 +295,7 @@ const MyString Planet::getMostUsedSaberColour(const MyString& jediRank) const
 	return sabers[indexToReturn];
 }
 
-void Planet::print()
+void Planet::printAPlanet()
 {
 	std::cout << "Planet name: " << getName() << "\nJedi that are on this planet are: \n";
 	sort();

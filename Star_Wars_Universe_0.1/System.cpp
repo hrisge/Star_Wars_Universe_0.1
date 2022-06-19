@@ -27,6 +27,8 @@ void system()
 			getMostUsedSaberColour(planetCollection);
 		else if (command == "isTherePlanetWithThisName")
 			isTherePlanetWithThisName(planetCollection);
+		else if (command == "printTwoPlanetsAtTheSameTime")
+			printTwoPlanetsAtTheSameTime(planetCollection);
 		else if (command == "print")
 			print(planetCollection);
 		else if (command == "save")
@@ -40,7 +42,6 @@ void system()
 			help();
 		else
 			std::cout << "Invalid command. Type help if you need help!\n";
-
 	}
 }
 
@@ -198,6 +199,19 @@ void getMostUsedSaberColour(PlanetCollection& planetCollection)
 	system("CLS");
 	std::cout<<planetCollection.getMostUsedSaberColour(planetName, rank);
 }
+void printTwoPlanetsAtTheSameTime(PlanetCollection& planetCollection)
+{
+	system("CLS");
+	MyString planetName1;
+	std::cout << "Enter the name of the First planet you want to print: ";
+	std::cin >> planetName1;
+
+	MyString planetName2;
+	std::cout << "Enter the name of the Second planet you want to print: ";
+	std::cin >> planetName2;
+
+	planetCollection.printTwoPlanetsAtTheSameTime(planetName1, planetName2);
+}
 void print(PlanetCollection& planetCollection)
 {
 	system("CLS");
@@ -215,5 +229,5 @@ void help()
 {
 	system("CLS");
 	std::cout << "The commands you can enter are : \n1)addPlanet\n2)addJedi\n3)reomveJedi\n4)promoteJedi\n5)demoteJedi\n6)getStrongestJedi\n";
-	std::cout << "7)getYoungestJedi\n8)getMostUsedSaberColour\n9)isTherePlanetWithThisName\n10)print\n11)save\n12)exit\n";
+	std::cout << "7)getYoungestJedi\n8)getMostUsedSaberColour\n9)isTherePlanetWithThisName\n10)printTwoPlanetsAtTheSameTime\n11)print\n12)save\n13)exit\n";
 }

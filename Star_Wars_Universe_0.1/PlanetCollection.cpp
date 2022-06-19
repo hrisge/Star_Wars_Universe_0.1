@@ -154,11 +154,27 @@ const MyString PlanetCollection::getMostUsedSaberColour(const MyString& planetNa
 	return planetCollection[index].getMostUsedSaberColour(jediRank);
 }
 
+void PlanetCollection::printTwoPlanetsAtTheSameTime(const MyString& planetName1, const MyString& planetName2)
+{
+	int index1 = getIndexForAPlanetByName(planetName1);
+	if (index1 < 0)
+		std::cout << "There is no planet with the name " << planetName1;
+	else
+		planetCollection[index1].printAPlanet();
+
+	int index2 = getIndexForAPlanetByName(planetName2);
+	if (index2 < 0)
+		std::cout << "There is no planet with the name " << planetName2;
+	else
+		planetCollection[index2].printAPlanet();
+
+}
+
 void PlanetCollection::print()
 {
 	for (size_t i = 0; i < getPlanetCollection().getSize(); ++i)
 	{
-		planetCollection[i].print();
+		planetCollection[i].printAPlanet();
 		std::cout << std::endl << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 	}
 }

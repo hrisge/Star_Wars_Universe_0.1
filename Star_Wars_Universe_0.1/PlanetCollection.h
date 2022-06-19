@@ -25,6 +25,7 @@ public:
 	const Jedi* getStrongestJedi(const MyString& planetName) const;
 	const Jedi* getYoungestJedi(const MyString& planetName, const MyString& rank) const;
 	const MyString getMostUsedSaberColour(const MyString& planetName, const MyString& jediRank) const;
+	void printTwoPlanetsAtTheSameTime(const MyString& planetName1, const MyString& planetName2);
 	void print();
 	void save() const;
 };
