@@ -126,6 +126,7 @@ void promoteJedi(PlanetCollection& planetCollection)
 	double multiplier;
 	std::cout << "Enter the multiplier of the increased strength of the Jedi! : ";
 	std::cin >> multiplier;
+	std::cin.ignore();
 	planetCollection.promoteJedi(planetName, name, multiplier);
 }
 void demoteJedi(PlanetCollection& planetCollection)

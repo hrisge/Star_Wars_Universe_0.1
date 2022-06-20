@@ -298,6 +298,12 @@ const MyString Planet::getMostUsedSaberColour(const MyString& jediRank) const
 void Planet::printAPlanet()
 {
 	std::cout << "Planet name: " << getName() << "\nJedi that are on this planet are: \n";
+	if (getJedi().getSize() == 0)
+	{
+		std::cout << "There are no Jedi on this planet!\n";
+		return;
+	}
+
 	sort();
 	for (unsigned i = 0; i < getJedi().getSize(); ++i)
 	{
